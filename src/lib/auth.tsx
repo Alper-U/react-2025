@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import React, { useState, useEffect, useContext, createContext } from 'react';
+import React, { useState, useEffect, useContext, createContext, PropsWithChildren } from 'react';
 import firebase from './firebase';
 
 const authContext = createContext({});
 
-export function ProvideAuth({ children }: any) {
+export function AuthProvider({ children }: PropsWithChildren) {
   const auth = useProvideAuth();
   return <authContext.Provider value={auth}>{children}</authContext.Provider>;
 }
@@ -16,13 +16,24 @@ export const useAuth = () => {
 
 function useProvideAuth() {
   const [user, setUser] = useState<any>();
-  
+
+  const handleUser = (rawUser: any) => {
+    if (rawUser) {
+      const user = formatUser(rawUser);
+      console.log(rawUser);
+      setUser(user);
+      return user;
+    } else {
+      setUser(false);
+      return false;
+    }
+  };
+
   const signInWithGithub = async () => {
-    const response = await firebase
+    return await firebase
       .auth()
-      .signInWithPopup(new firebase.auth.GithubAuthProvider());
-    setUser(response.user);
-    return response.user;
+      .signInWithPopup(new firebase.auth.GithubAuthProvider())
+      .then((response) => handleUser(response));
   };
 
   const signOut = async () => {
@@ -50,3 +61,13 @@ function useProvideAuth() {
     signOut
   };
 }
+
+const formatUser = (user: any) => {
+  return {
+    uid: user.uid,
+    email: user.email,
+    name: user.displayName,
+    provider: user.providerData[0]
+
+  };
+};

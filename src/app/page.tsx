@@ -1,17 +1,23 @@
 'use client';
 
-import styles from './page.module.css';
 import { useAuth } from '@/lib/auth';
+import { Button, Code, Heading, Icon, Text } from '@chakra-ui/react';
 
 export default function Home() {
   const auth: any = useAuth();
 
   return (
-    <main className={styles.main}>
-      <h1>Fast Feedback </h1>
-      <button onClick={() => auth.signInWithGithub()}>Sign In</button>
-      <div>{auth?.user?.email}</div>
-      <button onClick={() => auth.signOut()}>Sign Out</button>
+    <main>
+      <Heading>Fast Feedback </Heading>
+      <Icon name='logo' />
+      <Text>
+        Current User: <Code>{auth.user ? auth.user.email : 'None'}</Code>
+      </Text>
+      {auth.user ? (
+        <Button onClick={() => auth.signOut()}>Sign Out</Button>
+      ) : (
+        <Button onClick={() => auth.signInWithGithub()}>Sign In</Button>
+      )}
     </main>
   );
 }

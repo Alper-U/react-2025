@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useContext, createContext, PropsWithChildren } from 'react';
 import firebase from './firebase';
+import { createUser } from './firestore';
 
 const authContext = createContext({});
 
@@ -19,8 +20,9 @@ function useProvideAuth() {
 
   const handleUser = (rawUser: any) => {
     if (rawUser) {
-      const user = formatUser(rawUser);
-      console.log(rawUser);
+      const user = formatUser(rawUser.user);
+      console.log(rawUser)
+      createUser(user.uid, user);
       setUser(user);
       return user;
     } else {
@@ -67,7 +69,7 @@ const formatUser = (user: any) => {
     uid: user.uid,
     email: user.email,
     name: user.displayName,
-    provider: user.providerData[0]
-
+    provider: user.providerData[0]['providerId'],
+    photoUrl: user.photoURL
   };
 };

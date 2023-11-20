@@ -2,6 +2,7 @@
 
 import { useAuth } from '@/lib/auth';
 import { Button, Code, Heading, Icon, Text } from '@chakra-ui/react';
+import { Logo } from '@/styles/icons';
 
 export default function Home() {
   const auth: any = useAuth();
@@ -9,7 +10,7 @@ export default function Home() {
   return (
     <main>
       <Heading>Fast Feedback </Heading>
-      <Icon name='logo' />
+      <Logo boxSize={50}/>
       <Text>
         Current User: <Code>{auth.user ? auth.user.email : 'None'}</Code>
       </Text>

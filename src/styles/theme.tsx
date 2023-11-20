@@ -1,11 +1,11 @@
-import { extendTheme } from '@chakra-ui/react';
+import { extendTheme } from "@chakra-ui/react";
 
 export const theme = extendTheme({
   colors: {
     brand: {
-      900: '#1a365d',
-      800: '#153e75',
-      700: '#2a69ac',
+      900: "#1a365d",
+      800: "#153e75",
+      700: "#2a69ac",
     },
   },
   fonts: {
@@ -22,14 +22,13 @@ export const theme = extendTheme({
     logo: {
       path: (
         <g
-          fill='none'
-          stroke='currentColor'
-          strokeWidth='2'
-          strokeLinecap='round'
-          strokeLinejoin='round'
-        >
-        </g>
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        ></g>
       ),
-    }
-  }
+    },
+  },
 });

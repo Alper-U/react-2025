@@ -1,16 +1,11 @@
-// app/providers.tsx
-'use client';
+"use client";
 
-import { AuthProvider } from '@/lib/auth';
-import { CacheProvider } from '@chakra-ui/next-js';
-import { CSSReset, ChakraProvider } from '@chakra-ui/react';
-import { theme } from '@/styles/theme';
+import { AuthProvider } from "@/lib/auth";
+import { CacheProvider } from "@chakra-ui/next-js";
+import { CSSReset, ChakraProvider } from "@chakra-ui/react";
+import { theme } from "@/styles/theme";
 
-export default function Providers({
-  children
-}: {
-  children: React.ReactNode;
-}) {
+export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <AuthProvider>
       <CacheProvider>
@@ -20,6 +15,5 @@ export default function Providers({
         </ChakraProvider>
       </CacheProvider>
     </AuthProvider>
-
   );
 }

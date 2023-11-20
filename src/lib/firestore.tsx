@@ -4,7 +4,7 @@ const firestore = firebase.firestore();
 
 export function createUser(uid: string, data: any) {
   return firestore
-    .collection('users')
+    .collection("users")
     .doc(uid)
     .set({ uid, ...data }, { merge: true });
 }

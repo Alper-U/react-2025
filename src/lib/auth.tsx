@@ -1,10 +1,17 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, useContext, createContext, PropsWithChildren } from 'react';
-import firebase from './firebase';
-import { createUser } from './firestore';
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  createContext,
+  PropsWithChildren,
+} from "react";
+import firebase from "./firebase";
+import { createUser } from "./firestore";
 
-const authContext = createContext({});
+const defaultValue: any = false;
+const authContext = createContext(defaultValue);
 
 export function AuthProvider({ children }: PropsWithChildren) {
   const auth = useProvideAuth();
@@ -20,11 +27,12 @@ function useProvideAuth() {
 
   const handleUser = (rawUser: any) => {
     if (rawUser) {
-      const user = formatUser(rawUser.user);
-      console.log(rawUser)
-      createUser(user.uid, user);
-      setUser(user);
-      return user;
+      const formattedUser = formatUser(rawUser.user);
+      console.log(rawUser);
+      console.log(formattedUser);
+      createUser(formattedUser.uid, formattedUser);
+      setUser(formattedUser);
+      return formattedUser;
     } else {
       setUser(false);
       return false;
@@ -39,9 +47,7 @@ function useProvideAuth() {
   };
 
   const signOut = async () => {
-    await firebase
-      .auth()
-      .signOut();
+    await firebase.auth().signOut();
     setUser(false);
   };
 
@@ -60,7 +66,7 @@ function useProvideAuth() {
   return {
     user,
     signInWithGithub,
-    signOut
+    signOut,
   };
 }
 
@@ -69,7 +75,7 @@ const formatUser = (user: any) => {
     uid: user.uid,
     email: user.email,
     name: user.displayName,
-    provider: user.providerData[0]['providerId'],
-    photoUrl: user.photoURL
+    provider: user.providerData[0]["providerId"],
+    photoUrl: user.photoURL,
   };
 };

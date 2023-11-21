@@ -26,6 +26,7 @@ export const Logo = createIcon({
   viewBox: "0 0 24 24",
   path: [
     <path
+      key={0}
       fill="none"
       stroke="#292D32"
       strokeLinecap="round"
@@ -35,6 +36,7 @@ export const Logo = createIcon({
       d="M22 10v3c0 4-2 6-6 6h-.5c-.31 0-.61.15-.8.4l-1.5 2c-.66.88-1.74.88-2.4 0l-1.5-2c-.16-.22-.53-.4-.8-.4H8c-4 0-6-1-6-6V8c0-4 2-6 6-6h6"
     />,
     <path
+      key={1}
       fill="none"
       stroke="#292D32"
       strokeLinecap="round"
@@ -43,6 +45,7 @@ export const Logo = createIcon({
       d="M19.5 7a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"
     />,
     <path
+      key={2}
       stroke="#292D32"
       strokeLinecap="round"
       strokeLinejoin="round"

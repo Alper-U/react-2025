@@ -31,7 +31,7 @@ export default function AddSiteModal() {
   const onCreateSite: SubmitHandler<AddSiteInputs> = (values) => {
     const response = createSite(values["siteName"], values["siteUrl"]);
     toast({
-      title: "Site Added.",
+      title: "Site Added",
       status: "success",
       duration: 9000,
       isClosable: true,

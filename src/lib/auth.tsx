@@ -28,8 +28,6 @@ function useProvideAuth() {
   const handleUser = (rawUser: any) => {
     if (rawUser) {
       const formattedUser = formatUser(rawUser.user);
-      console.log(rawUser);
-      console.log(formattedUser);
       createUser(formattedUser.uid, formattedUser);
       setUser(formattedUser);
       return formattedUser;
@@ -54,7 +52,8 @@ function useProvideAuth() {
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        setUser(user);
+        const formattedUser = formatUser(user);
+        setUser(formattedUser);
       } else {
         setUser(false);
       }

@@ -9,6 +9,7 @@ import {
   Box,
   BreadcrumbItem,
   BreadcrumbLink,
+  Button,
 } from "@chakra-ui/react";
 import { Logo } from "@/styles/icons";
 import { useAuth } from "@/lib/auth";
@@ -46,7 +47,7 @@ const DashboardShell = ({ children }: Props) => {
           <Box>
             <Breadcrumb>
               <BreadcrumbItem>
-                <BreadcrumbLink>{JSON.stringify(auth.user)}</BreadcrumbLink>
+                <BreadcrumbLink color="gray.700">Sites</BreadcrumbLink>
               </BreadcrumbItem>
             </Breadcrumb>
             <Heading pb={4}>My Sites</Heading>

@@ -5,3 +5,8 @@ interface user {
 type Props = {
   children: JSX.Element;
 };
+
+type AddSiteInputs = {
+  siteName: string;
+  siteUrl: string;
+};

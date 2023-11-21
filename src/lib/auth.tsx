@@ -7,8 +7,9 @@ import React, {
   createContext,
   PropsWithChildren,
 } from "react";
-import firebase from "./firebase";
+import { firebase_auth } from "./firebase";
 import { createUser } from "./firestore";
+import { signInWithPopup, GithubAuthProvider } from "firebase/auth";
 
 const defaultValue: any = false;
 const authContext = createContext(defaultValue);
@@ -38,19 +39,19 @@ function useProvideAuth() {
   };
 
   const signInWithGithub = async () => {
-    return await firebase
-      .auth()
-      .signInWithPopup(new firebase.auth.GithubAuthProvider())
-      .then((response) => handleUser(response));
+    const provider = new GithubAuthProvider();
+    await signInWithPopup(firebase_auth, provider).then((response) =>
+      handleUser(response)
+    );
   };
 
   const signOut = async () => {
-    await firebase.auth().signOut();
+    await firebase_auth.signOut();
     setUser(false);
   };
 
   useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+    const unsubscribe = firebase_auth.onAuthStateChanged((user) => {
       if (user) {
         const formattedUser = formatUser(user);
         setUser(formattedUser);

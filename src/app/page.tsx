@@ -1,9 +1,8 @@
 "use client";
 
 import { useAuth } from "@/lib/auth";
-import { Box, Button, Code, Flex, Heading, Text } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 import { Logo } from "@/styles/icons";
-import EmptyState from "@/components/EmptyState";
 
 export default function Home() {
   const auth: any = useAuth();

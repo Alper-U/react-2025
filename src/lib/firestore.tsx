@@ -1,14 +1,10 @@
-import firebase from "./firebase";
+import { firestore } from "./firebase";
+import { doc, setDoc, addDoc, collection } from "firebase/firestore";
 
-const firestore = firebase.firestore();
-
-export function createUser(uid: string, user: Object) {
-  return firestore
-    .collection("users")
-    .doc(uid)
-    .set({ uid, ...user }, { merge: true });
+export async function createUser(uid: string, user: Object) {
+  await setDoc(doc(firestore, "users", uid), user, { merge: true });
 }
 
-export function createSite(addSiteInfo: createSiteInfo) {
-  return firestore.collection("sites").add(addSiteInfo);
+export async function createSite(addSiteInfo: createSiteInfo) {
+  await addDoc(collection(firestore, "sites"), addSiteInfo);
 }

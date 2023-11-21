@@ -9,6 +9,6 @@ export function createUser(uid: string, user: Object) {
     .set({ uid, ...user }, { merge: true });
 }
 
-export function createSite(siteName: string, siteUrl: string) {
-  return firestore.collection("sites").add({ siteName, siteUrl });
+export function createSite(addSiteInfo: createSiteInfo) {
+  return firestore.collection("sites").add(addSiteInfo);
 }

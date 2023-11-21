@@ -11,32 +11,45 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { createSite } from "@/lib/firestore";
-import { useToast } from "@chakra-ui/react";
+import { useAuth } from "@/lib/auth";
 
 export default function AddSiteModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const auth = useAuth();
 
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
+    reset,
   } = useForm<AddSiteInputs>();
   const toast = useToast();
 
-  const onCreateSite: SubmitHandler<AddSiteInputs> = (values) => {
-    const response = createSite(values["siteName"], values["siteUrl"]);
+  const onCreateSite: SubmitHandler<AddSiteInputs> = ({
+    siteName,
+    siteUrl,
+  }) => {
+    createSite({
+      authorId: auth.user.uid,
+      createdAt: new Date().toISOString(),
+      siteName,
+      siteUrl,
+    });
     toast({
-      title: "Site Added",
+      title: "Success!",
+      description: "We've added your site.",
       status: "success",
-      duration: 9000,
+      duration: 5000,
       isClosable: true,
     });
     onClose();
+    reset();
   };
 
   return (

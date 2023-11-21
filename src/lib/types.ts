@@ -10,3 +10,10 @@ type AddSiteInputs = {
   siteName: string;
   siteUrl: string;
 };
+
+type createSiteInfo = {
+  authorId: number;
+  createdAt: string;
+  siteName: string;
+  siteUrl: string;
+};

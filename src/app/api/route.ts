@@ -1,14 +1,13 @@
 // import firestore from "@/lib/firebase-admin";
+import { doc, collection, getDocs } from "firebase/firestore";
+import { firestore } from "@/lib/firebase";
 
 export async function GET() {
-  // const sitesRef = firestore.collection("sites");
-  // const doc = await sitesRef.get();
-  // if (!doc.exists) {
-  //   console.log("No such document!");
-  // } else {
-  //   console.log("Document data:", doc.data());
-  //   return Response.json(doc.data());
-  // }
+  const docSnap = await getDocs(collection(firestore, "sites"));
+  let sites: object[] = [];
+  docSnap.forEach((doc) => {
+    sites.push({ id: doc.id, ...doc.data() });
+  });
 
-  return Response.json({ nextjs: true });
+  return Response.json({ sites });
 }

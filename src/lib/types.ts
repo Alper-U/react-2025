@@ -7,13 +7,21 @@ type Props = {
 };
 
 type AddSiteInputs = {
-  siteName: string;
-  siteUrl: string;
+  name: string;
+  url: string;
 };
 
 type createSiteInfo = {
-  authorId: number;
+  authorId: string;
   createdAt: string;
-  siteName: string;
-  siteUrl: string;
+  name: string;
+  url: string;
+};
+
+type sitesResponse = {
+  id: string;
+  authorId: string;
+  createdAt: string;
+  name: string;
+  url: string;
 };

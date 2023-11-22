@@ -14,13 +14,15 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fontsource-variable/inter": "^5.0.15",
+    "date-fns": "^2.30.0",
     "firebase": "^10.6.0",
     "firebase-admin": "^11.11.0",
     "framer-motion": "^10.16.5",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-hook-form": "^7.48.2"
+    "react-hook-form": "^7.48.2",
+    "swr": "^2.2.4"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { Logo } from "@/styles/icons";
 import { useAuth } from "@/lib/auth";
+import AddSiteModal from "./AddSiteModal";
 
 const DashboardShell = ({ children }: Props) => {
   const auth = useAuth();
@@ -25,6 +26,8 @@ const DashboardShell = ({ children }: Props) => {
         justifyContent="space-between"
         py={4}
         px={8}
+        width="100%"
+        position="fixed"
       >
         <Stack spacing={4} direction="row" alignItems="center">
           <Logo boxSize={6} display="block" />
@@ -32,11 +35,21 @@ const DashboardShell = ({ children }: Props) => {
           <Link>Feedback</Link>
         </Stack>
         <Flex justifyContent="center" alignItems="center">
-          <Link pr={4}>Account</Link>
-          <Avatar size="sm" src={auth.user.photoUrl} />
+          {auth.user && (
+            <Link mr={4} onClick={() => auth.signOut()}>
+              Log Out
+            </Link>
+          )}
+          <Avatar size="sm" src={auth.user?.photoUrl} />
         </Flex>
       </Flex>
-      <Flex flexDirection="row" backgroundColor="gray.100" p={8} height="100vh">
+      <Flex
+        flexDirection="row"
+        backgroundColor="gray.100"
+        p={8}
+        height="100vh"
+        pt={24}
+      >
         <Flex
           flexDirection="column"
           maxWidth="1200px"
@@ -50,7 +63,10 @@ const DashboardShell = ({ children }: Props) => {
                 <BreadcrumbLink color="gray.700">Sites</BreadcrumbLink>
               </BreadcrumbItem>
             </Breadcrumb>
-            <Heading pb={4}>My Sites</Heading>
+            <Flex justifyContent="space-between" mb={6}>
+              <Heading>My Sites</Heading>
+              {auth.user && <AddSiteModal>+ Add Site</AddSiteModal>}
+            </Flex>
             {children}
           </Box>
         </Flex>

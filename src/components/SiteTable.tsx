@@ -1,4 +1,3 @@
-import { Skeleton } from "@chakra-ui/react";
 import {
   Table,
   Thead,

@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 
 import { useForm, SubmitHandler } from "react-hook-form";
-import { createSite } from "@/lib/firestore";
+import { createSite } from "@/lib/firestore-write";
 import { useAuth } from "@/lib/auth";
 import { mutate } from "swr";
 

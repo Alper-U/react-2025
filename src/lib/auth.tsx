@@ -8,7 +8,7 @@ import React, {
   PropsWithChildren,
 } from "react";
 import { firebase_auth } from "./firebase";
-import { createUser } from "./firestore";
+import { createUser } from "./firestore-write";
 import { signInWithPopup, GithubAuthProvider } from "firebase/auth";
 
 const defaultValue: any = false;

@@ -9,7 +9,6 @@ import {
   Box,
   BreadcrumbItem,
   BreadcrumbLink,
-  Button,
 } from "@chakra-ui/react";
 import { Logo } from "@/styles/icons";
 import { useAuth } from "@/lib/auth";
